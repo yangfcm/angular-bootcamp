@@ -2,7 +2,7 @@
 
 <div>
   <label for="">Enter length</label>
-  <input type="text" />
+  <input type="text" (input)="handleLengthInput($event)" />
 </div>
 
 <div>
@@ -21,7 +21,12 @@
 </div>
 
 <div>
-  <button (click)="handleGeneratePassword()">Generate</button>
+  <button
+    [disabled]="!length || !(useLetters || useNumbers || useSymbols)"
+    (click)="handleGeneratePassword()"
+  >
+    Generate
+  </button>
 </div>
 
 <div>

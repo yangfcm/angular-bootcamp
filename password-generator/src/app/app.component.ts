@@ -7,13 +7,33 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   password = '';
+  length = 0;
   useLetters = false;
   useNumbers = false;
   useSymbols = false;
 
   handleGeneratePassword() {
-    this.password = 'my password';
-    console.log(this.useLetters);
+    const numbers = '1234567890';
+    const letters = 'abcdefghijklmnopqrstuvwxyzABCEFGHIJKLMNOPQRSTUVWXYZ';
+    const symbols = '`~!@#$%^&*()_-=+/?:;\'",.<>';
+    let validChars = '';
+    let generatedPassword = '';
+    if (this.useLetters) {
+      validChars += letters;
+    }
+    if (this.useNumbers) {
+      validChars += numbers;
+    }
+    if (this.useSymbols) {
+      validChars += symbols;
+    }
+
+    for (let i = 0; i < this.length; i++) {
+      const randomIndex = Math.floor(Math.random() * validChars.length);
+      generatedPassword += validChars[randomIndex];
+    }
+
+    this.password = generatedPassword;
   }
 
   handleChangeUseLetters() {
@@ -24,5 +44,14 @@ export class AppComponent {
   }
   handleChangeUseSymbols() {
     this.useSymbols = !this.useSymbols;
+  }
+
+  handleLengthInput(e) {
+    const parsedValue = parseInt(e.target.value);
+    if (!isNaN(parsedValue)) {
+      this.length = parsedValue;
+    } else {
+      this.length = 0;
+    }
   }
 }
