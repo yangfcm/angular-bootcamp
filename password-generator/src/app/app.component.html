@@ -1,35 +1,66 @@
-<h1>Password Generator</h1>
-
-<div>
-  <label for="">Enter length</label>
-  <input type="text" (input)="handleLengthInput($event)" />
-</div>
-
-<div>
-  <label for="">Use Letters</label>
-  <input type="checkbox" (change)="handleChangeUseLetters()" />
-</div>
-
-<div>
-  <label for="">Use Numbers</label>
-  <input type="checkbox" (change)="handleChangeUseNumbers()" />
-</div>
-
-<div>
-  <label for="">Use Symbols</label>
-  <input type="checkbox" (change)="handleChangeUseSymbols()" />
-</div>
-
-<div>
-  <button
-    [disabled]="!length || !(useLetters || useNumbers || useSymbols)"
-    (click)="handleGeneratePassword()"
+<div class="container">
+  <div
+    class="columns is-centered"
+    style="margin-top: 5%; margin-left: 2%; margin-right: 2%;"
   >
-    Generate
-  </button>
-</div>
+    <div class="box column is-one-third">
+      <h1 class="title has-text-centered">Password Generator</h1>
 
-<div>
-  <label for="">Your password is</label>
-  <input [value]="password" />
+      <div class="field">
+        <label for="">Enter length({{ MIN_LENGTH }}- {{ MAX_LENGTH }})</label>
+        <input type="text" class="input" (input)="handleLengthInput($event)" />
+      </div>
+
+      <div class="field">
+        <div class="control">
+          <label for="use-letters" class="checkbox"
+            >Use Letters
+            <input
+              id="use-letters"
+              type="checkbox"
+              (change)="handleChangeUseLetters()"
+          /></label>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="control">
+          <label for="use-numbers" class="checkbox"
+            >Use Numbers
+            <input
+              id="use-numbers"
+              type="checkbox"
+              (change)="handleChangeUseNumbers()"
+          /></label>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="control">
+          <label for="use-symbols" class="checkbox"
+            >Use Symbols
+            <input
+              id="use-symbols"
+              type="checkbox"
+              (change)="handleChangeUseSymbols()"
+          /></label>
+        </div>
+      </div>
+
+      <div>
+        <button
+          class="button is-link is-fullwidth"
+          [disabled]="!length || !(useLetters || useNumbers || useSymbols)"
+          (click)="handleGeneratePassword()"
+        >
+          Generate
+        </button>
+      </div>
+
+      <div class="box" *ngIf="password">
+        <label for="">Your password is</label>
+        <input class="input" [value]="password" />
+      </div>
+    </div>
+  </div>
 </div>

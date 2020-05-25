@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-root',
@@ -6,6 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  MIN_LENGTH = 6;
+  MAX_LENGTH = 20;
   password = '';
   length = 0;
   useLetters = false;
@@ -48,7 +51,11 @@ export class AppComponent {
 
   handleLengthInput(e) {
     const parsedValue = parseInt(e.target.value);
-    if (!isNaN(parsedValue)) {
+    if (
+      !isNaN(parsedValue) &&
+      parsedValue >= this.MIN_LENGTH &&
+      parsedValue <= this.MAX_LENGTH
+    ) {
       this.length = parsedValue;
     } else {
       this.length = 0;
