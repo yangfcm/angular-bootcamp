@@ -8,3 +8,8 @@ Tutorial projects and notes for learning [The Modern Angular Bootcamp](https://w
 
 - [Node](https://nodejs.org/en/)
 - [Angular CLI](https://angular.io/cli)
+
+## Projects
+
+1. [Password Generator](./password-generator/README.md)
+2. [Cards](./cards/README.md)

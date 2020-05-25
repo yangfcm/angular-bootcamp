@@ -1,5 +1,7 @@
 # Password Generator
 
+App allows user to specify a password length and if it includes letters, numbers or symbols and generate a random string as a password.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.7.
 
 ## Development server
