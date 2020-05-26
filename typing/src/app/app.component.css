@@ -1,0 +1,7 @@
+.correct {
+  color: hsl(141, 53%, 53%);
+}
+
+.incorrect {
+  color: hsl(348, 100%, 61%);
+}

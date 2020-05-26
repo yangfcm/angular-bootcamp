@@ -1,0 +1,42 @@
+<div class="container" style="margin: 5%;">
+  <div class="columns is-centered">
+    <div class="box column is-half">
+      <h1 class="title has-text-centered">Typing Challenge</h1>
+
+      <p>
+        <span
+          *ngFor="let letter of randomText.split(''); let i = index"
+          [class]="
+            !inputText[i]
+              ? ''
+              : inputText[i] === letter
+              ? 'correct'
+              : 'incorrect'
+          "
+          >{{ letter }}</span
+        >
+      </p>
+
+      <div style="margin-bottom: 1rem;"></div>
+      <div class="field">
+        <textarea
+          class="textarea"
+          rows="5"
+          (input)="handleInput($event.target.value)"
+        ></textarea>
+      </div>
+      <div class="has-text-centered">
+        <button class="button is-danger" (click)="handleResetGame()">
+          Reset
+        </button>
+      </div>
+      <div
+        *ngIf="isSuccess"
+        class="has-text-centered"
+        style="margin-bottom: 2rem;"
+      >
+        <h1>Success!</h1>
+      </div>
+    </div>
+  </div>
+</div>
