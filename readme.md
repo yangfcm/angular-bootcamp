@@ -14,3 +14,5 @@ Tutorial projects and notes for learning [The Modern Angular Bootcamp](https://w
 1. [Password Generator](./password-generator/README.md)
 2. [Cards](./cards/README.md)
 3. [Typing Challenge](./typing/README.md)
+4. [Pipes](./pipes/README.md)
+5. [Multi Pages](./multi-pages.README.md)
