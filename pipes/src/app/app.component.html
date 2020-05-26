@@ -1,0 +1,77 @@
+<div class="container">
+  <h3>Payment Form</h3>
+  <div class="row">
+    <div class="form-group col-sm-6">
+      <label for="payee-name">Payee Name</label>
+      <input
+        type="text"
+        class="form-control"
+        (input)="onNameChange($event.target.value)"
+      />
+    </div>
+    <div class="col-sm-6">
+      <label for=""> <b>Payee Name</b> </label>
+      <div>
+        {{ name | titlecase }}
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-sm-6">
+      <label for="payment-date">Payment Date</label>
+      <input
+        type="date"
+        class="form-control"
+        (input)="onDateChange($event.target.value)"
+      />
+    </div>
+    <div class="col-sm-6">
+      <label for=""> <b>Payment Date</b> </label>
+      <div>
+        {{ date | date: "d MMMM, yyyy" }}
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-sm-6">
+      <label for="payment-amount">Amount</label>
+      <input
+        type="text"
+        class="form-control"
+        (input)="onAmountChange($event.target.value)"
+      />
+    </div>
+    <div class="col-sm-6">
+      <label for=""> <b>Amount</b> </label>
+      <div>
+        {{ amount | currency: "AUD" }}
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-sm-6">
+      <label>Miles</label>
+      <input
+        type="text"
+        class="form-control"
+        (input)="onMilesChange($event.target.value)"
+      />
+    </div>
+    <div class="col-sm-6">
+      <label for=""> <b>Kilometers</b> </label>
+      <div>{{ miles | convert: 2 }}</div>
+    </div>
+  </div>
+
+  <div>
+    <label for="">
+      <b>JSON format</b>
+    </label>
+    <div>
+      {{ car | json }}
+    </div>
+  </div>
+</div>
