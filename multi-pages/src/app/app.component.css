@@ -1,0 +1,12 @@
+div.container {
+  max-width: 600px;
+  margin: 50px auto;
+}
+a {
+  cursor: pointer;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
