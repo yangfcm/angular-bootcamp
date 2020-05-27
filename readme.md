@@ -16,3 +16,4 @@ Tutorial projects and notes for learning [The Modern Angular Bootcamp](https://w
 3. [Typing Challenge](./typing/README.md)
 4. [Pipes](./pipes/README.md)
 5. [Multi Pages](./multi-pages.README.md)
+6. [UI Widgets](./ui-widgets/README.md)
