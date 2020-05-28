@@ -22,6 +22,11 @@ const routes: Routes = [
       import('./views/views.module').then((m) => m.ViewsModule),
   },
   {
+    path: 'modules',
+    loadChildren: () =>
+      import('./ui-modules/ui-modules.module').then((m) => m.UiModulesModule),
+  },
+  {
     path: '',
     component: HomeComponent,
   },
