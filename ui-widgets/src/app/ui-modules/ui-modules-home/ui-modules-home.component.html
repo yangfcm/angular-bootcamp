@@ -1,6 +1,17 @@
 <div class="ui segment">
   <app-title>Modal Component</app-title>
-  <app-ui-modules-modal></app-ui-modules-modal>
+  <button class="ui button primary" (click)="onToggleModal()">
+    Show Modal
+  </button>
+  <app-ui-modules-modal *ngIf="openModal" (close)="onToggleModal()">
+    <div modalTitle>Modal Title</div>
+    <p>
+      Some content for modal
+    </p>
+    <div modalFooter>
+      <button class="ui button" (click)="onToggleModal()">Close</button>
+    </div>
+  </app-ui-modules-modal>
 </div>
 
 <div class="ui segment">
