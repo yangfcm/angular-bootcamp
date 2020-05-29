@@ -1,5 +1,7 @@
 # UiWidgets
 
+Demonstration of a set of UI components, like table, modal, list, accordion etc. to study Angular routes, modules, components and other techniques.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.7.
 
 ## Development server
