@@ -1,1 +1,17 @@
-<p>ui-modules-accordion works!</p>
+<div class="ui accordion styled">
+  <ng-container *ngFor="let item of items; let i = index">
+    <div
+      class="title"
+      [ngClass]="{ active: i === openedItemIndex }"
+      (click)="onToggleContent(i)"
+    >
+      <i class="dropdown icon"></i>
+      {{ item.title }}
+    </div>
+    <div class="content" [ngClass]="{ active: i === openedItemIndex }">
+      <p>
+        {{ item.content }}
+      </p>
+    </div>
+  </ng-container>
+</div>
