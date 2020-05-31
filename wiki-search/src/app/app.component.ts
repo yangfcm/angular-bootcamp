@@ -13,8 +13,8 @@ export class AppComponent {
   constructor(private wiki: WikiService) {}
 
   onTermSubmitted(term: string) {
-    this.wiki.search(term).subscribe((response: any) => {
-      this.pages = response.query.search;
+    this.wiki.search(term).subscribe((pages) => {
+      this.pages = pages;
     });
   }
 }
