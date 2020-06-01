@@ -1,0 +1,24 @@
+<form [formGroup]="paymentForm">
+  <input formControlName="name" />
+  <div
+    *ngIf="
+      paymentForm.controls.name.errors &&
+      paymentForm.controls.name.errors.required
+    "
+  >
+    Value is required
+  </div>
+</form>
+
+<div>
+  Form contents:
+  {{ paymentForm.value | json }}
+</div>
+<div>
+  Form is valid:
+  {{ paymentForm.valid }}
+</div>
+<div>
+  Errors in name:
+  {{ paymentForm.controls.name.errors | json }}
+</div>
