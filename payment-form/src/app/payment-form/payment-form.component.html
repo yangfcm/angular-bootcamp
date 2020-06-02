@@ -1,16 +1,53 @@
-<form [formGroup]="paymentForm">
-  <input formControlName="name" />
-  <div
-    *ngIf="
-      paymentForm.controls.name.errors &&
-      paymentForm.controls.name.errors.required
-    "
-  >
-    Value is required
+<div class="columns">
+  <div class="column">
+    <app-card
+      [name]="paymentForm.controls.name.value"
+      [cardNumber]="paymentForm.controls.cardNumber.value"
+      [expiration]="paymentForm.controls.expiration.value"
+    ></app-card>
   </div>
-</form>
+  <div class="column">
+    <form [formGroup]="paymentForm" (ngSubmit)="onSubmitForm()">
+      <app-input
+        [control]="paymentForm.controls.name"
+        [label]="'Name'"
+        type="text"
+      ></app-input>
+      <app-input
+        [control]="paymentForm.controls.cardNumber"
+        [label]="'Card Number'"
+      ></app-input>
+      <div class="columns">
+        <div class="column">
+          <app-input
+            [control]="paymentForm.controls.expiration"
+            [label]="'Expiration (MM/YY)'"
+          ></app-input>
+        </div>
+        <div class="column">
+          <app-input
+            [control]="paymentForm.controls.securityCode"
+            [label]="'Security Code'"
+          ></app-input>
+        </div>
+      </div>
+      <div class="buttons">
+        <button
+          type="submit"
+          [disabled]="paymentForm.invalid"
+          class="button is-primary"
+        >
+          Submit
+        </button>
+        <button class="button is-warning" type="button" (click)="onResetForm()">
+          Reset
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
 
-<div>
+<!-- <div>
   Form contents:
   {{ paymentForm.value | json }}
 </div>
@@ -21,4 +58,4 @@
 <div>
   Errors in name:
   {{ paymentForm.controls.name.errors | json }}
-</div>
+</div> -->

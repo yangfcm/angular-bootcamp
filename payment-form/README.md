@@ -1,5 +1,7 @@
 # PaymentForm
 
+Create a credit card form using Angular Reactive Form.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.7.
 
 ## Development server
