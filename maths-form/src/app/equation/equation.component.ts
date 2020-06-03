@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { delay } from 'rxjs/operators';
+import { delay, filter } from 'rxjs/operators';
 import { MathValidators } from '../math-validators';
 
 @Component({
@@ -9,6 +9,7 @@ import { MathValidators } from '../math-validators';
   styleUrls: ['./equation.component.css'],
 })
 export class EquationComponent implements OnInit {
+  secondsPerSolution = 0;
   mathForm = new FormGroup(
     {
       number1: new FormControl(this.generateRandomNumber()),
@@ -21,19 +22,27 @@ export class EquationComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+    const startTime = new Date();
+    let numberSolved = 0;
+
     /** statusChanges in reactive form is a subject object, which you can subscribe it
      * and watch its current value('INVALID' or 'VALID')
      */
-    this.mathForm.statusChanges.pipe(delay(600)).subscribe((value) => {
-      if (value === 'INVALID') {
-        return;
-      }
-      this.mathForm.setValue({
-        number1: this.generateRandomNumber(),
-        number2: this.generateRandomNumber(),
-        answer: '',
+    this.mathForm.statusChanges
+      .pipe(
+        filter((value) => value === 'VALID'),
+        delay(400)
+      )
+      .subscribe(() => {
+        numberSolved++;
+        this.secondsPerSolution =
+          (new Date().getTime() - startTime.getTime()) / numberSolved / 1000;
+        this.mathForm.setValue({
+          number1: this.generateRandomNumber(),
+          number2: this.generateRandomNumber(),
+          answer: '',
+        });
       });
-    });
   }
 
   generateRandomNumber() {
