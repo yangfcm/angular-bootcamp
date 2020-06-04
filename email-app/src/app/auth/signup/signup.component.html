@@ -1,0 +1,24 @@
+<div>
+  <h3>Create an account</h3>
+  <form class="ui form" [formGroup]="signupForm">
+    <div class="field">
+      <label for="">Username</label>
+      <input formControlName="username" />@angular-email.com
+    </div>
+    <div class="field">
+      <label for="">Password</label>
+      <input formControlName="password" type="password" />
+    </div>
+    <div class="field">
+      <label for="">Password Confirmation</label>
+      <input formControlName="passwordConf" type="password" />
+    </div>
+    <button class="ui submit button primary">
+      Sign up
+    </button>
+  </form>
+</div>
+
+{{ signupForm.controls.username.errors | json }}
+{{ signupForm.controls.password.errors | json }}
+{{ signupForm.controls.passwordConf.errors | json }}
