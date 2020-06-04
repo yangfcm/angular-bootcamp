@@ -15,7 +15,6 @@ export class InputComponent implements OnInit {
   ngOnInit(): void {}
 
   showErrors() {
-    console.log(this.control);
     if (!this.control) {
       return false;
     }
