@@ -1,21 +1,39 @@
 <div>
   <h3>Create an account</h3>
   <form class="ui form" [formGroup]="signupForm">
-    <div class="field">
-      <label for="">Username</label>
-      <input formControlName="username" />@angular-email.com
+    <app-input
+      label="Username"
+      [control]="signupForm.get('username')"
+      type="text"
+    ></app-input>
+    <div class="margin"></div>
+    <app-input
+      label="Password"
+      [control]="signupForm.get('password')"
+      type="password"
+    ></app-input>
+    <div class="margin"></div>
+    <app-input
+      label="Password Confirmation"
+      [control]="signupForm.get('passwordConf')"
+      type="password"
+    ></app-input>
+    <div
+      class="ui pointing red basic label"
+      *ngIf="
+        signupForm.get('password').touched &&
+        signupForm.get('passwordConf').touched &&
+        signupForm.errors
+      "
+    >
+      <p *ngIf="signupForm.errors.passwordsDontMatch">Passwords do not match</p>
     </div>
-    <div class="field">
-      <label for="">Password</label>
-      <input formControlName="password" type="password" />
+    <div class="margin"></div>
+    <div>
+      <button class="ui submit button primary">
+        Sign up
+      </button>
     </div>
-    <div class="field">
-      <label for="">Password Confirmation</label>
-      <input formControlName="passwordConf" type="password" />
-    </div>
-    <button class="ui submit button primary">
-      Sign up
-    </button>
   </form>
 </div>
 
