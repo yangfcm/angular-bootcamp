@@ -1,6 +1,6 @@
 <div>
   <h3>Create an account</h3>
-  <form class="ui form" [formGroup]="signupForm">
+  <form class="ui form" [formGroup]="signupForm" (ngSubmit)="onSignupSubmit()">
     <app-input
       label="Username"
       [control]="signupForm.get('username')"
@@ -27,6 +27,9 @@
       "
     >
       <p *ngIf="signupForm.errors.passwordsDontMatch">Passwords do not match</p>
+      <p *ngIf="signupForm.errors.submitError">
+        Failed to signup for unknown reasons
+      </p>
     </div>
     <div class="margin"></div>
     <div>
