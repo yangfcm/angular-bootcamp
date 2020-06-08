@@ -4,8 +4,10 @@ import {
   HttpInterceptor,
   HttpHandler,
   HttpRequest,
+  HttpEventType,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { tap, filter } from 'rxjs/operators';
 
 @Injectable()
 export class AuthHttpInterceptor implements HttpInterceptor {
@@ -13,7 +15,17 @@ export class AuthHttpInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    console.log('intercept', req);
-    return next.handle(req);
+    // Modify or log outgoing request:
+    // Bring cookie in request
+    const modifiedReq = req.clone({
+      withCredentials: true,
+    });
+    return next.handle(modifiedReq);
+    // .pipe(
+    //   filter((val) => val.type === HttpEventType.Sent),
+    //   tap(() => {
+    //     console.log('Request was sent to server');
+    //   })
+    // );
   }
 }

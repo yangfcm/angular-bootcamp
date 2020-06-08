@@ -12,9 +12,11 @@ export class AppComponent {
   constructor(private authService: AuthService) {}
 
   ngOnInit() {
+    this.authService.checkAuth().subscribe(() => {
+      // this.signedIn = res.authenticated
+    });
     this.authService.signedIn$.subscribe((signedIn) => {
       this.signedIn = signedIn;
     });
-    this.authService.checkAuth().subscribe(() => {});
   }
 }
