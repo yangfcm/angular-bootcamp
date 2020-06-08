@@ -29,7 +29,7 @@ interface SignedInResponse {
 })
 export class AuthService {
   rootUrl = environment.apiUrl;
-  signedIn$ = new BehaviorSubject(false);
+  signedIn$ = new BehaviorSubject(null);
 
   constructor(private http: HttpClient) {}
 
