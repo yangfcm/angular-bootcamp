@@ -2,14 +2,26 @@
   <div class="ui secondary pointing menu">
     <a routerLink="/" class="item">Angular Email</a>
     <div class="right menu">
-      <a routerLink="/inbox" class="ui item" routerLinkActive="active">Inbox</a>
-      <a routerLink="/signout" class="ui item" routerLinkActive="active"
-        >Sign out</a
-      >
-      <a routerLink="/" class="ui item" routerLinkActive="active">Sign in</a>
-      <a routerLink="/signup" class="ui item" routerLinkActive="active"
-        >Sign up</a
-      >
+      <ng-container *ngIf="signedIn">
+        <a routerLink="/inbox" class="ui item" routerLinkActive="active"
+          >Inbox</a
+        >
+        <a routerLink="/signout" class="ui item" routerLinkActive="active"
+          >Sign out</a
+        >
+      </ng-container>
+      <ng-container *ngIf="!signedIn">
+        <a
+          routerLink="/"
+          class="ui item"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Sign in</a
+        >
+        <a routerLink="/signup" class="ui item" routerLinkActive="active"
+          >Sign up</a
+        >
+      </ng-container>
     </div>
   </div>
   <router-outlet></router-outlet>
