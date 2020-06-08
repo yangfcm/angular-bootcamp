@@ -1,1 +1,28 @@
-<p>signin works!</p>
+<div>
+  <h3>Sign in</h3>
+  <form class="ui form" [formGroup]="signinForm" (ngSubmit)="onSignupSubmit()">
+    <app-input
+      label="Username"
+      [control]="signinForm.get('username')"
+      type="text"
+    ></app-input>
+    <div class="margin"></div>
+    <app-input
+      label="Password"
+      [control]="signinForm.get('password')"
+      type="password"
+    ></app-input>
+    <div *ngIf="signinForm.errors" class="ui red pointing basic label">
+      <p *ngIf="signinForm.errors.credentials">
+        Bad credentials
+      </p>
+      <p *ngIf="signinForm.errors.submitError">
+        Failed to signin for unknown reasons
+      </p>
+    </div>
+    <div class="margin"></div>
+    <button class="ui submit button primary">
+      Sign in
+    </button>
+  </form>
+</div>
