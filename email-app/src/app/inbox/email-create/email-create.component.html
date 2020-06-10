@@ -4,5 +4,8 @@
 
 <app-modal *ngIf="showModal" (dismiss)="showModal = false">
   <h3 modalTitle>Write a new email</h3>
-  <app-email-form [email]="email"></app-email-form>
+  <app-email-form
+    [email]="email"
+    (emailSubmit)="onSendEmail($event)"
+  ></app-email-form>
 </app-modal>
