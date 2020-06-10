@@ -1,9 +1,18 @@
 <div class="field">
   <label for="">{{ label }}</label>
-  <input [formControl]="control" [type]="type" />
+  <input
+    *ngIf="controlType === 'input'"
+    [formControl]="control"
+    [type]="type"
+  />
+
+  <textarea *ngIf="controlType === 'textarea'"></textarea>
   <div *ngIf="showErrors()" class="ui pointing red basic label">
     <p *ngIf="control.errors.required">
       This field is required
+    </p>
+    <p *ngIf="control.errors.email">
+      Value is not a valid email
     </p>
     <p *ngIf="control.errors.minlength">
       Value must be at least

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 
 import { InboxRoutingModule } from './inbox-routing.module';
@@ -23,6 +24,11 @@ import { EmailFormComponent } from './email-form/email-form.component';
     NotFoundComponent,
     EmailFormComponent,
   ],
-  imports: [CommonModule, InboxRoutingModule, SharedModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    InboxRoutingModule,
+    SharedModule,
+  ],
 })
 export class InboxModule {}
