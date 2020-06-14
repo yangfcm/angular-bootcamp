@@ -1,7 +1,26 @@
 import { Injectable } from '@angular/core';
 import { HttpParams, HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { Observable, of, throwError } from 'rxjs';
+import {
+  map,
+  switchMap,
+  pluck,
+  mergeMap,
+  filter,
+  toArray,
+  retry,
+  tap,
+  catchError,
+} from 'rxjs/operators';
+
+interface IOpenWeatherResponse {
+  list: {
+    dt_txt: string;
+    main: {
+      temp: number;
+    };
+  }[];
+}
 
 @Injectable({
   providedIn: 'root',
@@ -9,18 +28,6 @@ import { map, switchMap } from 'rxjs/operators';
 export class ForecastService {
   private url = 'https://api.openweathermap.org/data/2.5/forecast';
   constructor(private http: HttpClient) {}
-
-  getLocation() {
-    return new Observable<Coordinates>((observer) => {
-      window.navigator.geolocation.getCurrentPosition(
-        (position) => {
-          observer.next(position.coords);
-          observer.complete;
-        },
-        (err) => observer.error(err)
-      );
-    });
-  }
 
   getForecast() {
     return this.getLocation().pipe(
@@ -32,8 +39,34 @@ export class ForecastService {
           .set('appid', '2bf49136311bcaad1894c3956871fbc2');
       }),
       switchMap((params) => {
-        return this.http.get(this.url, { params });
-      })
+        return this.http.get<IOpenWeatherResponse>(this.url, { params });
+      }),
+      pluck('list'),
+      mergeMap((value) => {
+        return of(...value);
+      }),
+      filter((value, index) => {
+        return index % 8 === 0;
+      }),
+      map((value) => {
+        return {
+          date: value.dt_txt,
+          temp: value.main.temp,
+        };
+      }),
+      toArray()
     );
+  }
+
+  getLocation() {
+    return new Observable<Coordinates>((observer) => {
+      window.navigator.geolocation.getCurrentPosition(
+        (position) => {
+          observer.next(position.coords);
+          observer.complete();
+        },
+        (err) => observer.error(err)
+      );
+    });
   }
 }
