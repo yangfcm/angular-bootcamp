@@ -13,7 +13,7 @@ export class ForecastComponent implements OnInit {
 
   ngOnInit(): void {
     this.forecastService.getForecast().subscribe((weatherData) => {
-      console.log('ok,', weatherData);
+      // console.log('ok,', weatherData);
       this.weatherData = weatherData;
     });
   }
