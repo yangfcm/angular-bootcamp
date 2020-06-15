@@ -11,6 +11,7 @@ import {
   retry,
   tap,
   catchError,
+  share,
 } from 'rxjs/operators';
 
 interface IOpenWeatherResponse {
@@ -54,7 +55,8 @@ export class ForecastService {
           temp: value.main.temp,
         };
       }),
-      toArray()
+      toArray(),
+      share()
     );
   }
 
