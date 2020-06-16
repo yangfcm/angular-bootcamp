@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 import { scan } from 'rxjs/operators';
 
-enum CommandType {
+export enum CommandType {
   success = 'success',
   error = 'error',
   clear = 'clear',
 }
 
-interface ICommand {
+export interface ICommand {
   id: number;
   type: CommandType;
   text?: string;
@@ -34,19 +34,31 @@ export class NotificationsService {
   }
 
   addSuccess(message: string) {
+    const id = this.randomId();
     this.messagesInput.next({
-      id: this.randomId(),
+      id,
       type: CommandType.success,
       text: message,
     });
+
+    // Clear the message automatically after a time-out
+    setTimeout(() => {
+      this.clearMessage(id);
+    }, 3000);
   }
 
   addError(message: string) {
+    const id = this.randomId();
     this.messagesInput.next({
-      id: this.randomId(),
+      id,
       type: CommandType.error,
       text: message,
     });
+
+    // Clear the message automatically after a time-out
+    setTimeout(() => {
+      this.clearMessage(id);
+    }, 3000);
   }
 
   clearMessage(id: number) {
