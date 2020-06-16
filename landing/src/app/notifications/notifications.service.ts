@@ -44,7 +44,7 @@ export class NotificationsService {
     // Clear the message automatically after a time-out
     setTimeout(() => {
       this.clearMessage(id);
-    }, 3000);
+    }, 5000);
   }
 
   addError(message: string) {
@@ -58,7 +58,7 @@ export class NotificationsService {
     // Clear the message automatically after a time-out
     setTimeout(() => {
       this.clearMessage(id);
-    }, 3000);
+    }, 5000);
   }
 
   clearMessage(id: number) {

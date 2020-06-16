@@ -13,6 +13,7 @@ import {
   catchError,
   share,
 } from 'rxjs/operators';
+import { NotificationsService } from '../notifications/notifications.service';
 
 interface IOpenWeatherResponse {
   list: {
@@ -28,7 +29,10 @@ interface IOpenWeatherResponse {
 })
 export class ForecastService {
   private url = 'https://api.openweathermap.org/data/2.5/forecast';
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private notificationsService: NotificationsService
+  ) {}
 
   getForecast() {
     return this.getLocation().pipe(
@@ -69,6 +73,15 @@ export class ForecastService {
         },
         (err) => observer.error(err)
       );
-    });
+    }).pipe(
+      retry(1),
+      tap(() => {
+        this.notificationsService.addSuccess('Got your location');
+      }),
+      catchError((err) => {
+        this.notificationsService.addError('Failed to get location');
+        return throwError(err);
+      })
+    );
   }
 }
