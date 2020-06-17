@@ -5,6 +5,7 @@
   flex-direction: column;
   justify-content: center;
   display: flex;
+  z-index: 10;
 }
 
 .temp,
