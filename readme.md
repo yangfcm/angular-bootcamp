@@ -2,21 +2,23 @@
 
 ## Intro
 
-Tutorial projects and notes for learning [The Modern Angular Bootcamp](https://www.udemy.com/course/the-modern-angular-bootcamp) by Stephen Grider
+Sample apps for learning Angular.
 
-## Dev environment setup
+## Content
 
-- [Node](https://nodejs.org/en/)
+A. [The Modern Angular Bootcamp(Stephen Grider@Udemy)](https://www.udemy.com/course/the-modern-angular-bootcamp)
+
+1. [Password Generator](./password-generator)
+2. [Cards](./cards)
+3. [Typing Challenge](./typing)
+4. [Pipes](./pipes)
+5. [Multi Pages](./multi-pages)
+6. [UI Widgets](./ui-widgets)
+7. [Wiki Search](./wiki-search)
+8. [Card Payment Form](./payment-form)
+9. [Maths Form](./maths-form)
+
+## Requirements
+
+- [Node/NPM](https://nodejs.org/en/)
 - [Angular CLI](https://angular.io/cli)
-
-## Projects
-
-1. [Password Generator](./password-generator/README.md)
-2. [Cards](./cards/README.md)
-3. [Typing Challenge](./typing/README.md)
-4. [Pipes](./pipes/README.md)
-5. [Multi Pages](./multi-pages.README.md)
-6. [UI Widgets](./ui-widgets/README.md)
-7. [Wiki Search](./wiki-search/README.md)
-8. [Card Payment Form](./payment-form/README.md)
-9. [Maths Form](./maths-form/README.md)
