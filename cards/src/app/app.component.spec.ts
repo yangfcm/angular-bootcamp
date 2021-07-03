@@ -1,14 +1,23 @@
-import { TestBed, async } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+import { AppComponent, postsData } from './app.component';
+import { By } from '@angular/platform-browser';
+import { CardComponent } from './card/card.component';
 
 describe('AppComponent', () => {
+  let fixture: ComponentFixture<AppComponent>;
+  let app: AppComponent;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
+      declarations: [AppComponent, CardComponent],
     }).compileComponents();
   }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    app = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
@@ -16,16 +25,13 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'cards'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('cards');
+  it('should have correct posts data', () => {
+    expect(app.posts.length).toBe(postsData.length);
+    expect(app.posts).toEqual(postsData);
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('cards app is running!');
+  it('should have CardComponent as child component and the number of CardComponent equal to the length of posts property', () => {
+    const children = fixture.debugElement.queryAll(By.css('app-card'));
+    expect(children.length).toBe(postsData.length);
   });
 });
