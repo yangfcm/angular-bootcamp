@@ -8,7 +8,7 @@
 
       <div class="field">
         <label for="">Enter length({{ MIN_LENGTH }}- {{ MAX_LENGTH }})</label>
-        <input type="text" class="input" (input)="handleLengthInput($event)" />
+        <input type="text" class="input" id="length-input" (input)="handleLengthInput($event)" />
       </div>
 
       <div class="field">
@@ -56,8 +56,8 @@
           Generate
         </button>
       </div>
-
-      <div class="box" *ngIf="password">
+      <br />
+      <div *ngIf="password">
         <label for="">Your password is</label>
         <input class="input" [value]="password" />
       </div>

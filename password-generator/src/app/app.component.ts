@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-root',
@@ -50,15 +49,13 @@ export class AppComponent {
   }
 
   handleLengthInput(e) {
-    const parsedValue = parseInt(e.target.value);
+    const numberValue = Number(e.target.value);
     if (
-      !isNaN(parsedValue) &&
-      parsedValue >= this.MIN_LENGTH &&
-      parsedValue <= this.MAX_LENGTH
-    ) {
-      this.length = parsedValue;
-    } else {
-      this.length = 0;
-    }
+      isNaN(numberValue) ||
+      numberValue < this.MIN_LENGTH ||
+      numberValue > this.MAX_LENGTH
+    )
+      return;
+    this.length = Math.floor(numberValue);
   }
 }
