@@ -49,6 +49,7 @@
 
       <div>
         <button
+          id="generate-password-btn"
           class="button is-link is-fullwidth"
           [disabled]="!length || !(useLetters || useNumbers || useSymbols)"
           (click)="handleGeneratePassword()"
@@ -57,9 +58,9 @@
         </button>
       </div>
       <br />
-      <div *ngIf="password">
+      <div id="password-container" *ngIf="password">
         <label for="">Your password is</label>
-        <input class="input" [value]="password" />
+        <input id="password-generated" class="input" [value]="password" />
       </div>
     </div>
   </div>

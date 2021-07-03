@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 
+export const numbers = '1234567890';
+export const letters = 'abcdefghijklmnopqrstuvwxyzABCEFGHIJKLMNOPQRSTUVWXYZ';
+export const symbols = '`~!@#$%^&*()_-=+/?:;\'",.<>';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -15,9 +19,6 @@ export class AppComponent {
   useSymbols = false;
 
   handleGeneratePassword() {
-    const numbers = '1234567890';
-    const letters = 'abcdefghijklmnopqrstuvwxyzABCEFGHIJKLMNOPQRSTUVWXYZ';
-    const symbols = '`~!@#$%^&*()_-=+/?:;\'",.<>';
     let validChars = '';
     let generatedPassword = '';
     if (this.useLetters) {
