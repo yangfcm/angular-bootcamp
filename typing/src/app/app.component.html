@@ -3,7 +3,7 @@
     <div class="box column is-half">
       <h1 class="title has-text-centered">Typing Challenge</h1>
 
-      <p>
+      <p id="random-text">
         <span
           *ngFor="let letter of randomText.split(''); let i = index"
           [class]="
@@ -20,17 +20,19 @@
       <div style="margin-bottom: 1rem;"></div>
       <div class="field">
         <textarea
+          id="input-text"
           class="textarea"
           rows="5"
           (input)="handleInput($event.target.value)"
         ></textarea>
       </div>
       <div class="has-text-centered">
-        <button class="button is-danger" (click)="handleResetGame()">
+        <button id="reset-button" class="button is-danger" (click)="handleResetGame()">
           Reset
         </button>
       </div>
       <div
+        id="success-message"
         *ngIf="isSuccess"
         class="has-text-centered"
         style="margin-bottom: 2rem;"
