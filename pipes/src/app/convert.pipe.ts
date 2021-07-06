@@ -5,7 +5,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class ConvertPipe implements PipeTransform {
   transform(value: number, ...args: any[]): number {
-    console.log(value);
     if (!value) {
       return null;
     }

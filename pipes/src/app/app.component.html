@@ -4,6 +4,7 @@
     <div class="form-group col-sm-6">
       <label for="payee-name">Payee Name</label>
       <input
+        id="payee-name-input"
         type="text"
         class="form-control"
         (input)="onNameChange($event.target.value)"
@@ -11,7 +12,7 @@
     </div>
     <div class="col-sm-6">
       <label for=""> <b>Payee Name</b> </label>
-      <div>
+      <div id="converted-payee-name">
         {{ name | titlecase }}
       </div>
     </div>
@@ -21,6 +22,7 @@
     <div class="form-group col-sm-6">
       <label for="payment-date">Payment Date</label>
       <input
+        id="date-input"
         type="date"
         class="form-control"
         (input)="onDateChange($event.target.value)"
@@ -28,7 +30,7 @@
     </div>
     <div class="col-sm-6">
       <label for=""> <b>Payment Date</b> </label>
-      <div>
+      <div id="converted-date">
         {{ date | date: "d MMMM, yyyy" }}
       </div>
     </div>
@@ -38,6 +40,7 @@
     <div class="form-group col-sm-6">
       <label for="payment-amount">Amount</label>
       <input
+        id="amount-input"
         type="text"
         class="form-control"
         (input)="onAmountChange($event.target.value)"
@@ -45,7 +48,7 @@
     </div>
     <div class="col-sm-6">
       <label for=""> <b>Amount</b> </label>
-      <div>
+      <div id="converted-amount">
         {{ amount | currency: "AUD" }}
       </div>
     </div>
@@ -55,6 +58,7 @@
     <div class="form-group col-sm-6">
       <label>Miles</label>
       <input
+        id="miles-input"
         type="text"
         class="form-control"
         (input)="onMilesChange($event.target.value)"
@@ -62,7 +66,7 @@
     </div>
     <div class="col-sm-6">
       <label for=""> <b>Kilometers</b> </label>
-      <div>{{ miles | convert: 2 }}</div>
+      <div id="converted-miles">{{ miles | convert: 2 }}</div>
     </div>
   </div>
 
@@ -70,7 +74,7 @@
     <label for="">
       <b>JSON format</b>
     </label>
-    <div>
+    <div id="converted-json">
       {{ car | json }}
     </div>
   </div>
