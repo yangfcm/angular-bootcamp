@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="my-3">
+  <div class="my-3" id="current-image">
     <h4 class="d-flex justify-content-center align-items-center p-3">
       {{ images[currentIndex].title }}
     </h4>
@@ -13,13 +13,13 @@
 
   <nav>
     <ul class="pagination d-flex justify-content-center">
-      <li class="page-item" [ngClass]="{ disabled: currentIndex === 0 }">
+      <li  id="prev-link" class="page-item" [ngClass]="{ disabled: currentIndex === 0 }">
         <a class="page-link" (click)="currentIndex = currentIndex - 1">Prev</a>
       </li>
       <!-- <ng-container *ngFor="let image of images; let i = index"> -->
       <ng-container *appTimes="images.length; let i = index">
         <li
-          class="page-item"
+          class="page-item index-link"
           [ngClass]="{ active: currentIndex === i }"
           [appMyClass]="{ active: currentIndex === i }"
           *ngIf="checkWindowIndex(i)"
@@ -29,7 +29,7 @@
           </a>
         </li>
       </ng-container>
-      <li
+      <li id="next-link" 
         class="page-item"
         [appMyClass]="{ disabled: currentIndex === images.length - 1 }"
       >

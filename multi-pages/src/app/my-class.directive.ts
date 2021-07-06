@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input } from '@angular/core';
+import { Component, Directive, ElementRef, Input } from '@angular/core';
 
 @Directive({
   selector: '[appMyClass]',
@@ -6,7 +6,7 @@ import { Directive, ElementRef, Input } from '@angular/core';
 export class MyClassDirective {
   constructor(private element: ElementRef) {}
 
-  /** Customized (attribute) directive. Realize the same function as ngClass */
+  /** Customized (attribute) directive. Implement the same function as ngClass */
   @Input('appMyClass') set classNames(classObj: any) {
     for (let key in classObj) {
       if (classObj[key]) {

@@ -5,7 +5,7 @@ Use Angular Pipes to convert values.
 ## How to run
 
 ```bash
-$ cd cards
+$ cd pipes
 $ npm install
 $ npm start
 ```

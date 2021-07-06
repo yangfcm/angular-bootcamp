@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  currentIndex = 3;
+  currentIndex = 0;
   images = [
     {
       title: 'Aerial view of city during daytime',
