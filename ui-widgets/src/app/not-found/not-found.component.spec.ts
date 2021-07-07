@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { By } from '@angular/platform-browser';
 import { NotFoundComponent } from './not-found.component';
 
 describe('NotFoundComponent', () => {
@@ -8,9 +8,8 @@ describe('NotFoundComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NotFoundComponent ]
-    })
-    .compileComponents();
+      declarations: [NotFoundComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -21,5 +20,11 @@ describe('NotFoundComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should have a h3 element with correct text', () => {
+    const h3El = fixture.debugElement.query(By.css('h3'));
+    expect(h3El).toBeTruthy();
+    expect(h3El.nativeElement.innerText).toContain('Page not found');
   });
 });
