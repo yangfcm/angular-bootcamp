@@ -5,7 +5,7 @@ import { BiographyComponent } from './biography/biography.component';
 import { CompaniesComponent } from './companies/companies.component';
 import { PartnersComponent } from './partners/partners.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: '',
     component: CollectionsHomeComponent,
