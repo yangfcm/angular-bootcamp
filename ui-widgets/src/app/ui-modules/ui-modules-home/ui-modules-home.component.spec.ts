@@ -49,7 +49,7 @@ describe('UiModulesHomeComponent', () => {
     button.triggerEventHandler('click', null);
     fixture.detectChanges();
     modal = fixture.debugElement.query(By.css('app-ui-modules-modal'));
-    expect(modal).toBeTruthy();
+    expect(modal).toBeTruthy(); // Test modal can be open.
 
     const closeButton = fixture.debugElement.query(
       By.css('app-ui-modules-modal button')
@@ -57,6 +57,6 @@ describe('UiModulesHomeComponent', () => {
     closeButton.triggerEventHandler('click', null);
     fixture.detectChanges();
     modal = fixture.debugElement.query(By.css('app-ui-modules-modal'));
-    expect(modal).toBeFalsy();
+    expect(modal).toBeFalsy(); // Test modal can be closed
   });
 });
