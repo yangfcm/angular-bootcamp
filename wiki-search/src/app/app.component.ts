@@ -21,10 +21,12 @@ export class AppComponent {
     this.wiki.search(term).subscribe(
       (data: Page[]) => {
         this.pages = data;
+        this.error = '';
       },
       (error: HttpErrorResponse) => {
         this.error = error.message;
         this.pages = [];
+        this.isLoading = false;
       },
       () => {
         this.isLoading = false;
