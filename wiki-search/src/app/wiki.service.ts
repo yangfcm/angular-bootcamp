@@ -6,7 +6,7 @@ export interface Page {
   pageid: number;
   title: string;
   snippet: string;
-  wordCount: number;
+  wordcount: number;
 }
 
 export interface WikiResponse {
