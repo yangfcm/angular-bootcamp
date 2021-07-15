@@ -7,14 +7,13 @@ import { WikiService } from './wiki.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'wiki-search';
-  pages = [];
+  _wiki: WikiService;
 
-  constructor(private wiki: WikiService) {}
+  constructor(private wiki: WikiService) {
+    this._wiki = wiki;
+  }
 
   onTermSubmitted(term: string) {
-    this.wiki.search(term).subscribe((pages) => {
-      this.pages = pages;
-    });
+    this.wiki.search(term);
   }
 }

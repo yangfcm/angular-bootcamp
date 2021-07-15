@@ -1,4 +1,9 @@
-<div class="container">
-  <app-search-bar (submitted)="onTermSubmitted($event)"></app-search-bar>
-  <app-page-list *ngIf="pages.length" [pages]="pages"></app-page-list>
+<div class="container"> 
+  <br/>
+  <app-search-bar (submitted)="onTermSubmitted($event)"></app-search-bar> 
+  <br/>
+  <app-loader *ngIf="_wiki.isLoading && !_wiki.error"></app-loader>
+  <app-error-message *ngIf="_wiki.error">{{_wiki.error}}</app-error-message>
+  <app-page-list *ngIf="_wiki.pages.length" [pages]="_wiki.pages"></app-page-list>
+  
 </div>

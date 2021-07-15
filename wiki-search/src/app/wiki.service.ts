@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { pluck } from 'rxjs/operators';
 
-interface WikiResponse {
+export interface Page {
+  pageid: number;
+  title: string;
+  snippet: string;
+  wordCount: number;
+}
+
+export interface WikiResponse {
   query: {
-    search: {
-      pageid: number;
-      title: string;
-      snippet: string;
-    }[];
+    search: Page[];
   };
 }
 
@@ -17,10 +20,16 @@ interface WikiResponse {
 })
 export class WikiService {
   apiUrl = 'https://en.wikipedia.org/w/api.php';
+  isLoading = false;
+  error = '';
+  pages: Page[] = [];
 
   constructor(private http: HttpClient) {}
 
   public search(term: string) {
+    this.isLoading = true;
+    this.error = '';
+    this.pages = [];
     return this.http
       .get<WikiResponse>(`${this.apiUrl}`, {
         params: {
@@ -32,6 +41,19 @@ export class WikiService {
           origin: '*',
         },
       })
-      .pipe(pluck('query', 'search'));
+      .pipe(pluck('query', 'search'))
+      .subscribe(
+        (data: Page[]) => {
+          this.pages = data;
+          this.error = '';
+        },
+        (error: HttpErrorResponse) => {
+          this.error = error.message;
+          this.pages = [];
+        },
+        () => {
+          this.isLoading = false;
+        }
+      );
   }
 }
