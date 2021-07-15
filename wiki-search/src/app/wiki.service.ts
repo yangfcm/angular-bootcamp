@@ -20,16 +20,44 @@ export interface WikiResponse {
 })
 export class WikiService {
   apiUrl = 'https://en.wikipedia.org/w/api.php';
-  isLoading = false;
-  error = '';
-  pages: Page[] = [];
+  // isLoading = false;
+  // error = '';
+  // pages: Page[] = [];
 
   constructor(private http: HttpClient) {}
 
+  // public search(term: string) {
+  //   this.isLoading = true;
+  //   this.error = '';
+  //   this.pages = [];
+  //   return this.http
+  //     .get<WikiResponse>(`${this.apiUrl}`, {
+  //       params: {
+  //         action: 'query',
+  //         format: 'json',
+  //         list: 'search',
+  //         utf8: '1',
+  //         srsearch: term,
+  //         origin: '*',
+  //       },
+  //     })
+  //     .pipe(pluck('query', 'search'))
+  //     .subscribe(
+  //       (data: Page[]) => {
+  //         this.pages = data;
+  //         this.error = '';
+  //       },
+  //       (error: HttpErrorResponse) => {
+  //         this.error = error.message;
+  //         this.pages = [];
+  //       },
+  //       () => {
+  //         this.isLoading = false;
+  //       }
+  //     );
+  // }
+
   public search(term: string) {
-    this.isLoading = true;
-    this.error = '';
-    this.pages = [];
     return this.http
       .get<WikiResponse>(`${this.apiUrl}`, {
         params: {
@@ -41,19 +69,6 @@ export class WikiService {
           origin: '*',
         },
       })
-      .pipe(pluck('query', 'search'))
-      .subscribe(
-        (data: Page[]) => {
-          this.pages = data;
-          this.error = '';
-        },
-        (error: HttpErrorResponse) => {
-          this.error = error.message;
-          this.pages = [];
-        },
-        () => {
-          this.isLoading = false;
-        }
-      );
+      .pipe(pluck('query', 'search'));
   }
 }

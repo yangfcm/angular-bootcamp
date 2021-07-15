@@ -3,7 +3,7 @@ import { By } from '@angular/platform-browser';
 import { PageListComponent } from './page-list.component';
 import { Page } from '../wiki.service';
 
-const PAGES_DATA: Page[] = [
+export const PAGES_DATA: Page[] = [
   {
     pageid: 1,
     title: 'Angular',

@@ -1,5 +1,6 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { WikiService } from './wiki.service';
+import { Page, WikiService } from './wiki.service';
 
 @Component({
   selector: 'app-root',
@@ -7,13 +8,27 @@ import { WikiService } from './wiki.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  _wiki: WikiService;
+  isLoading = false;
+  pages: Page[] = [];
+  error = '';
 
-  constructor(private wiki: WikiService) {
-    this._wiki = wiki;
-  }
+  constructor(private wiki: WikiService) {}
 
   onTermSubmitted(term: string) {
-    this.wiki.search(term);
+    this.isLoading = true;
+    this.error = '';
+    this.pages = [];
+    this.wiki.search(term).subscribe(
+      (data: Page[]) => {
+        this.pages = data;
+      },
+      (error: HttpErrorResponse) => {
+        this.error = error.message;
+        this.pages = [];
+      },
+      () => {
+        this.isLoading = false;
+      }
+    );
   }
 }
