@@ -10,15 +10,15 @@
       [(ngModel)]="email"
       #emailControl="ngModel"
     />
+    <ng-container *ngIf="emailControl.invalid && emailControl.touched">
+      <div class="help is-danger" *ngIf="emailControl.errors.required">
+        Email is required
+      </div>
+      <div class="help is-danger" *ngIf="emailControl.errors.pattern">
+        Email provided is invalid
+      </div>
+    </ng-container>
   </div>
-  <ng-container *ngIf="emailControl.invalid && emailControl.touched">
-    <div class="help is-danger" *ngIf="emailControl.errors.required">
-      Email is required
-    </div>
-    <div class="help is-danger" *ngIf="emailControl.errors.pattern">
-      Email provided is invalid
-    </div>
-  </ng-container>
   <button class="button is-primary" [disabled]="emailForm.invalid">
     Submit
   </button>
