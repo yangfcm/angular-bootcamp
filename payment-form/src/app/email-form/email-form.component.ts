@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm, NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-email-form',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./email-form.component.css'],
 })
 export class EmailFormComponent implements OnInit {
+  @ViewChild('emailForm', { static: true }) emailForm: NgForm;
+  @ViewChild('emailControl') emailControl: NgModel;
   email = '';
   constructor() {}
 
