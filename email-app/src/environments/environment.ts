@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://api.angular-email.com',
+  apiUrl: 'https://api.angular-email.com', // This is a third-party API for learning only.
 };
 
 /*
