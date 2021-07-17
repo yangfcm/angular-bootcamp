@@ -6,10 +6,8 @@ import {
   TestBed,
   tick,
 } from '@angular/core/testing';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { of } from 'rxjs';
-import { TestScheduler } from 'rxjs/testing';
 import { EquationComponent } from './equation.component';
 
 describe('EquationComponent', () => {
