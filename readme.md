@@ -17,6 +17,7 @@ A. [The Modern Angular Bootcamp(Stephen Grider@Udemy)](https://www.udemy.com/cou
 7. [Wiki Search](./wiki-search)
 8. [Card Payment Form](./payment-form)
 9. [Maths Form](./maths-form)
+10. [Email App](./email-app)
 
 ## Requirements
 

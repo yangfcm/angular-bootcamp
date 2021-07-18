@@ -6,20 +6,19 @@ describe('EmailIndexComponent', () => {
   let component: EmailIndexComponent;
   let fixture: ComponentFixture<EmailIndexComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ EmailIndexComponent ]
-    })
-    .compileComponents();
-  }));
+  // beforeEach(async(() => {
+  //   TestBed.configureTestingModule({
+  //     declarations: [EmailIndexComponent],
+  //   }).compileComponents();
+  // }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(EmailIndexComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  // beforeEach(() => {
+  //   fixture = TestBed.createComponent(EmailIndexComponent);
+  //   component = fixture.componentInstance;
+  //   fixture.detectChanges();
+  // });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+  // it('should create', () => {
+  //   expect(component).toBeTruthy();
+  // });
 });
