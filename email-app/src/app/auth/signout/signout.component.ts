@@ -13,7 +13,7 @@ export class SignoutComponent implements OnInit {
   ngOnInit(): void {
     this.authService.signout().subscribe(() => {
       // Navigate the user back to signin page
-      this.router.navigateByUrl('/');
+      this.router.navigateByUrl('/signin');
     });
   }
 }

@@ -9,6 +9,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./inbox/inbox.module').then((mod) => mod.InboxModule),
   },
+  {
+    path: '',
+    redirectTo: '/inbox',
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({
