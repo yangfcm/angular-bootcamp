@@ -98,6 +98,12 @@ describe('InputComponent', () => {
       expect(error.nativeElement.innerText).toContain(
         `Value has invalid characters`
       );
+
+      component.control.setErrors({
+        nonUniqueUsername: true,
+      });
+      fixture.detectChanges();
+      expect(error.nativeElement.innerText).toContain('Username is taken');
     });
   });
 
