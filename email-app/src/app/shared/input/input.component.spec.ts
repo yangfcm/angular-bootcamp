@@ -30,17 +30,29 @@ describe('InputComponent', () => {
         Validators.maxLength(10),
         Validators.pattern(/^[a-zA-Z0-9]+$/),
       ]);
-
-      input = fixture.debugElement.query(By.css('input'));
       fixture.detectChanges();
     });
 
     it('should create', () => {
       expect(component).toBeTruthy();
     });
+
+    it('should update the control with new input', () => {
+      input = fixture.debugElement.query(By.css('input'));
+      expect(input).toBeTruthy();
+      input.triggerEventHandler('input', {
+        target: {
+          value: 'John',
+        },
+      });
+      fixture.detectChanges();
+      expect(component.control.value).toBe('John');
+      error = fixture.debugElement.query(By.css('div.red'));
+      expect(error).toBeFalsy();
+    });
   });
 
-  describe('Basic Textarea IinputComponent', () => {
+  describe('Basic Textarea InputComponent', () => {
     beforeEach(() => {
       basicSetting();
       component.label = 'content';

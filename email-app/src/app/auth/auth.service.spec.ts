@@ -6,6 +6,8 @@ import {
 import { skip } from 'rxjs/operators';
 
 import { AuthService } from './auth.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthHttpInterceptor } from './auth-http-interceptor';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -14,6 +16,13 @@ describe('AuthService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
+      providers: [
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: AuthHttpInterceptor,
+          multi: true,
+        },
+      ],
     });
     httpTestingController = TestBed.inject(HttpTestingController);
     service = TestBed.inject(AuthService);
@@ -61,6 +70,7 @@ describe('AuthService', () => {
       password: requestData.password,
       passwordConfirmation: requestData.passwordConf,
     });
+    expect(testRequest.request.withCredentials).toBe(true);
     testRequest.flush(expectedResponseData);
     expect(service.username).toBe('test');
   });
@@ -86,6 +96,7 @@ describe('AuthService', () => {
     const testRequest = httpTestingController.expectOne(requestUrl);
     expect(testRequest.request.method).toEqual('POST');
     expect(testRequest.request.body).toEqual({ ...requestData });
+    expect(testRequest.request.withCredentials).toBe(true);
     testRequest.flush(expectedResponseData);
     expect(service.username).toBe('test');
   });
