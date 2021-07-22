@@ -37,9 +37,13 @@ describe('InputComponent', () => {
       expect(component).toBeTruthy();
     });
 
-    it('should update the control with new input', () => {
+    it('should render text input', () => {
       input = fixture.debugElement.query(By.css('input'));
       expect(input).toBeTruthy();
+    });
+
+    it('should update the control with new input', () => {
+      input = fixture.debugElement.query(By.css('input'));
       input.triggerEventHandler('input', {
         target: {
           value: 'John',
@@ -49,6 +53,51 @@ describe('InputComponent', () => {
       expect(component.control.value).toBe('John');
       error = fixture.debugElement.query(By.css('div.red'));
       expect(error).toBeFalsy();
+    });
+
+    it('should render error if invalid value is provided', () => {
+      input = fixture.debugElement.query(By.css('input'));
+      input.triggerEventHandler('input', {
+        target: {
+          value: '',
+        },
+      });
+      component.control.markAsDirty();
+      component.control.markAsTouched();
+      fixture.detectChanges();
+      error = fixture.debugElement.query(By.css('div.red'));
+
+      expect(component.control.errors.required).toBeTruthy();
+      expect(error.nativeElement.innerText).toContain('This field is required');
+
+      input.triggerEventHandler('input', {
+        target: {
+          value: 'Jo',
+        },
+      });
+      fixture.detectChanges();
+      expect(component.control.errors.minlength).toBeTruthy();
+      expect(error.nativeElement.innerText).toContain(`Value must be at least`);
+
+      input.triggerEventHandler('input', {
+        target: {
+          value: 'veryverylongname',
+        },
+      });
+      fixture.detectChanges();
+      expect(component.control.errors.maxlength).toBeTruthy();
+      expect(error.nativeElement.innerText).toContain(`Value must not exceed`);
+
+      input.triggerEventHandler('input', {
+        target: {
+          value: 'John+',
+        },
+      });
+      fixture.detectChanges();
+      expect(component.control.errors.pattern).toBeTruthy();
+      expect(error.nativeElement.innerText).toContain(
+        `Value has invalid characters`
+      );
     });
   });
 
@@ -65,6 +114,21 @@ describe('InputComponent', () => {
 
     it('should create', () => {
       expect(component).toBeTruthy();
+    });
+
+    it('should render textarea', () => {
+      input = fixture.debugElement.query(By.css('textarea'));
+      expect(input).toBeTruthy();
+    });
+
+    it('should update the control value with new input', () => {
+      input = fixture.debugElement.query(By.css('textarea'));
+      input.triggerEventHandler('input', {
+        target: {
+          value: 'Something',
+        },
+      });
+      expect(component.control.value).toBe('Something');
     });
   });
 });
