@@ -3,18 +3,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { defer, of, throwError } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { AuthService } from '../auth.service';
-
 import { SigninComponent } from './signin.component';
-
-/**
- * Create async observable that emits-once and completes
- * after a JS engine turn
- */
-export function asyncData<T>(data: T) {
-  return defer(() => Promise.resolve(data));
-}
 
 describe('SigninComponent', () => {
   let component: SigninComponent;
