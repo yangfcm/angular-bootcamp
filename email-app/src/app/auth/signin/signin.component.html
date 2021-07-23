@@ -1,6 +1,6 @@
 <div>
   <h3>Sign in</h3>
-  <form class="ui form" [formGroup]="signinForm" (ngSubmit)="onSignupSubmit()">
+  <form class="ui form" [formGroup]="signinForm" (ngSubmit)="onSigninSubmit()">
     <app-input
       label="Username"
       [control]="signinForm.get('username')"
