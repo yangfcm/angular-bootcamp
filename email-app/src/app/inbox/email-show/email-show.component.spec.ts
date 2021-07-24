@@ -10,7 +10,7 @@ import { EmailShowComponent } from './email-show.component';
 describe('EmailShowComponent', () => {
   let component: EmailShowComponent;
   let fixture: ComponentFixture<EmailShowComponent>;
-  let routeStub, getDataSpy;
+  let routeStub;
 
   beforeEach(async(() => {
     routeStub = jasmine.createSpyObj(
