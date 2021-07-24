@@ -13,8 +13,8 @@ import { SignupComponent } from './signup.component';
 describe('SignupComponent', () => {
   let component: SignupComponent;
   let fixture: ComponentFixture<SignupComponent>;
-  let authServiceStub, routerStub;
-  let signupSpy, usernameAvailableSpy: any;
+  let authServiceStub, routerStub, uniqueUsernameStub;
+  let signupSpy, usernameAvailableSpy, validateSpy: any;
   let form: DebugElement,
     usernameInput: DebugElement,
     passwordInput: DebugElement,
@@ -30,14 +30,19 @@ describe('SignupComponent', () => {
     usernameAvailableSpy = authServiceStub.usernameAvailable.and.returnValue(
       of(null)
     );
+
+    uniqueUsernameStub = jasmine.createSpyObj('UniqueUsername', ['validate']);
+    validateSpy = uniqueUsernameStub.validate.and.returnValue(of(null));
+
     routerStub = jasmine.createSpyObj<Router>('Router', ['navigateByUrl']);
+
     TestBed.configureTestingModule({
       declarations: [SignupComponent],
       providers: [
         { provide: AuthService, useValue: authServiceStub },
         { provide: Router, useValue: routerStub },
         { provide: MatchPassword },
-        { provide: UniqueUsername },
+        { provide: UniqueUsername, useValue: uniqueUsernameStub },
       ],
       imports: [ReactiveFormsModule, FormsModule],
       schemas: [NO_ERRORS_SCHEMA],
