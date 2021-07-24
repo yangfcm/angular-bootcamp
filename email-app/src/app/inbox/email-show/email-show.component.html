@@ -13,7 +13,9 @@
   </div>
 </div>
 <div class="ui divider"></div>
-<div *ngIf="email.html" [innerHTML]="email.html"></div>
-<div *ngIf="!email.html">
-  {{ email.text }}
+<div class="body">
+  <div *ngIf="email.html" [innerHTML]="email.html"></div>
+  <div *ngIf="!email.html">
+    {{ email.text }}
+  </div>
 </div>
