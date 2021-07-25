@@ -29,6 +29,7 @@ export class EmailFormComponent implements OnInit {
       console.log('invalid form');
       return;
     }
+    // console.log(this.emailForm.value);
     this.emailSubmit.emit(this.emailForm.value);
   }
 }

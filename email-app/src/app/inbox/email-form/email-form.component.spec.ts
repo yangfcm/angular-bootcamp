@@ -5,6 +5,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EmailFormComponent } from './email-form.component';
 import { EMAIL_DATA } from '../email.service.spec';
 import { By } from '@angular/platform-browser';
+import { IEmail } from '../email.interface';
+import { first } from 'rxjs/operators';
 
 describe('EmailFormComponent', () => {
   let component: EmailFormComponent;
@@ -68,5 +70,26 @@ describe('EmailFormComponent', () => {
     expect(textControl.valid).toBeTruthy();
     textControl.setValue('');
     expect(textControl.hasError('required')).toBeTruthy();
+  });
+
+  it('should submit form', () => {
+    const { to, from, subject, text } = component.emailForm.controls;
+    to.setValue('andy@test.com');
+    subject.setValue('test');
+    text.setValue('test text');
+
+    expect(component.emailForm.valid).toBeTruthy();
+
+    let formValue: any;
+    component.emailSubmit
+      .pipe(first())
+      .subscribe((value) => (formValue = value));
+    const form = fixture.debugElement.query(By.css('form'));
+    form.triggerEventHandler('submit', null);
+    expect(formValue).toEqual({
+      to: 'andy@test.com',
+      subject: 'test',
+      text: 'test text',
+    });
   });
 });
